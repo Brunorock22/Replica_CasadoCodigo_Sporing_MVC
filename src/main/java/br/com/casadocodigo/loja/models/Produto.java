@@ -1,12 +1,11 @@
 package br.com.casadocodigo.loja.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Produto {
@@ -17,10 +16,31 @@ public class Produto {
 	private String titulo;
 	private String descricao;
 	private int paginas;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Calendar dataLancamento;
 
 	@ElementCollection
 	private List<Preco> precos;
-	
+
+	private String sumarioPath;
+
+	public Calendar getDataLancamento() {
+		return dataLancamento;
+	}
+
+	public void setDataLancamento(Calendar dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}
